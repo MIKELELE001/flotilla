@@ -48,7 +48,8 @@ async function main() {
     console.log("");
   }
 
-  console.log("Connection + read pipeline confirmed working.");
+    console.log("Connection + read pipeline confirmed working.");
+  process.exit(0);
 }
 
 main().catch((err) => {
