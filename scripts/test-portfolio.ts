@@ -102,8 +102,8 @@ async function main() {
     console.log(`Total estimated payout (raw units, mixed decimals — format per market in UI): ${totalClaimableRaw}`);
   }
 
-  console.log("\nPortfolio data pipeline confirmed working.");
-  process.exit(0);
+    console.log("\nPortfolio data pipeline confirmed working.");
+  await exchange.close();
 }
 
 main().catch((err) => {

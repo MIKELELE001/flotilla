@@ -49,7 +49,7 @@ async function main() {
   }
 
     console.log("Connection + read pipeline confirmed working.");
-  process.exit(0);
+  await exchange.close();
 }
 
 main().catch((err) => {
