@@ -48,7 +48,11 @@ async function main() {
     console.log("");
   }
 
-    console.log("Connection + read pipeline confirmed working.");
+  console.log("Connection + read pipeline confirmed working.");
+
+  // Release the SDK's live watches/WebSocket cleanly instead of forcing the
+  // process down — process.exit() while a socket is mid-close can trigger a
+  // libuv-level crash on Windows (UV_HANDLE_CLOSING assertion).
   await exchange.close();
 }
 

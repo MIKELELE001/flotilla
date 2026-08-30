@@ -1,3 +1,4 @@
+@'
 // Flotilla — portfolio data layer test.
 // Goal: pull a real wallet's full Event Contract portfolio (open positions,
 // exposure, claimable winnings) using the SDK's native aggregation surfaces,
@@ -111,11 +112,7 @@ async function main() {
   }
 
   console.log("\nPortfolio data pipeline confirmed working.");
-
-  // Release the SDK's live watches/WebSocket cleanly instead of forcing the
-  // process down — process.exit() while a socket is mid-close can trigger a
-  // libuv-level crash on Windows (UV_HANDLE_CLOSING assertion).
-  await exchange.close();
+  process.exit(0);
 }
 
 main().catch((err) => {
@@ -123,3 +120,4 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+'@ | Set-Content -Path scripts	est-portfolio.ts -Encoding utf8

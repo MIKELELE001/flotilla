@@ -13,9 +13,11 @@
   "dependencies": {
     "@somnia-chain/markets-sdk": "^0.28.1",
     "@tanstack/react-query": "^5.102.5",
+    "lucide-react": "^1.37.0",
     "next": "16.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "recharts": "^3.10.1",
     "viem": "^2.55.19",
     "wagmi": "^3.7.6"
   },
