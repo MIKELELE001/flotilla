@@ -1,13 +1,17 @@
 import { Bell } from "lucide-react";
 
-export function TopHeader({ expiringSoonCount }: { expiringSoonCount: number }) {
+interface Props {
+  title: string;
+  subtitle: string;
+  expiringSoonCount?: number;
+}
+
+export function TopHeader({ title, subtitle, expiringSoonCount = 0 }: Props) {
   return (
     <div className="flex items-center justify-between mb-8">
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight">Dashboard</h1>
-        <p className="text-sm text-[var(--color-text-muted)] mt-1">
-          Your entire Event Contracts book, in one view.
-        </p>
+        <h1 className="text-2xl font-extrabold tracking-tight">{title}</h1>
+        <p className="text-sm text-[var(--color-text-muted)] mt-1">{subtitle}</p>
       </div>
       <div className="flex items-center gap-4">
         <div

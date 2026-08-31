@@ -1,16 +1,20 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LayoutGrid, Wallet, History, Settings } from "lucide-react";
 import { Logo } from "./Logo";
 
 const NAV_ITEMS = [
-  { label: "Dashboard", icon: LayoutGrid, active: true },
-  { label: "Positions", icon: Wallet, active: false },
-  { label: "History", icon: History, active: false },
-  { label: "Settings", icon: Settings, active: false },
+  { label: "Dashboard", href: "/", icon: LayoutGrid },
+  { label: "Positions", href: "/positions", icon: Wallet },
+  { label: "History", href: "/history", icon: History },
+  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <aside
       className="w-60 shrink-0 h-screen sticky top-0 border-r flex flex-col p-5"
@@ -24,20 +28,24 @@ export function Sidebar() {
         Menu
       </div>
       <nav className="space-y-1">
-        {NAV_ITEMS.map(({ label, icon: Icon, active }) => (
-          <button
-            key={label}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
-            style={
-              active
-                ? { background: "var(--color-accent)", color: "#0a0a0a" }
-                : { color: "var(--color-text-muted)" }
-            }
-          >
-            <Icon size={17} strokeWidth={2.2} />
-            {label}
-          </button>
-        ))}
+        {NAV_ITEMS.map(({ label, href, icon: Icon }) => {
+          const active = pathname === href;
+          return (
+            <Link
+              key={label}
+              href={href}
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
+              style={
+                active
+                  ? { background: "var(--color-accent)", color: "#0a0a0a" }
+                  : { color: "var(--color-text-muted)" }
+              }
+            >
+              <Icon size={17} strokeWidth={2.2} />
+              {label}
+            </Link>
+          );
+        })}
       </nav>
 
       <div className="mt-auto">
