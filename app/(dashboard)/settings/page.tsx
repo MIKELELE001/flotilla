@@ -1,7 +1,9 @@
 "use client";
 
+import { useAccount, useDisconnect } from "wagmi";
 import { TopHeader } from "@/components/TopHeader";
 import { SettingsSection, SettingsRow, Toggle } from "@/components/SettingsSection";
+import { ConnectWalletButton } from "@/components/ConnectWalletButton";
 import { ExternalLink } from "lucide-react";
 
 const LINKS = [
@@ -11,6 +13,9 @@ const LINKS = [
 ];
 
 export default function SettingsPage() {
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+
   return (
     <>
       <TopHeader title="Settings" subtitle="Wallet, alerts, and network details." />
@@ -19,14 +24,19 @@ export default function SettingsPage() {
         <SettingsSection title="Wallet">
           <SettingsRow
             label="Connected wallet"
-            description="0xfa0bf249...322ed4736"
+            description={isConnected && address ? address : "No wallet connected"}
             control={
-              <button
-                className="text-xs font-semibold px-4 py-2 rounded-full border"
-                style={{ borderColor: "var(--color-border)", color: "var(--color-text-muted)" }}
-              >
-                Disconnect
-              </button>
+              isConnected ? (
+                <button
+                  onClick={() => disconnect()}
+                  className="text-xs font-semibold px-4 py-2 rounded-full border"
+                  style={{ borderColor: "var(--color-border)", color: "var(--color-text-muted)" }}
+                >
+                  Disconnect
+                </button>
+              ) : (
+                <ConnectWalletButton />
+              )
             }
           />
         </SettingsSection>
@@ -56,9 +66,13 @@ export default function SettingsPage() {
             control={
               <span
                 className="text-xs font-bold px-2.5 py-1 rounded-full"
-                style={{ background: "var(--color-up-dim)", color: "var(--color-up)" }}
+                style={
+                  isConnected
+                    ? { background: "var(--color-up-dim)", color: "var(--color-up)" }
+                    : { background: "var(--color-surface-raised)", color: "var(--color-text-dim)" }
+                }
               >
-                Connected
+                {isConnected ? "Connected" : "Not connected"}
               </span>
             }
           />

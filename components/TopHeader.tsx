@@ -1,4 +1,5 @@
 import { Bell } from "lucide-react";
+import { ConnectWalletButton } from "./ConnectWalletButton";
 
 interface Props {
   title: string;
@@ -14,12 +15,7 @@ export function TopHeader({ title, subtitle, expiringSoonCount = 0 }: Props) {
         <p className="text-sm text-[var(--color-text-muted)] mt-1">{subtitle}</p>
       </div>
       <div className="flex items-center gap-4">
-        <div
-          className="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-full border text-sm text-[var(--color-text-dim)]"
-          style={{ borderColor: "var(--color-border)" }}
-        >
-          0xfa0b…d4736
-        </div>
+        <ConnectWalletButton />
         <button
           className="relative w-11 h-11 rounded-full border flex items-center justify-center"
           style={{ borderColor: "var(--color-border)" }}

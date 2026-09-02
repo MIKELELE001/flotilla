@@ -29,7 +29,7 @@ export function EmergencyExitCard({ positions }: Props) {
           <div>
             <div className="font-bold text-sm mb-1">Emergency Exit</div>
             <div className="text-xs text-[var(--color-text-muted)]">
-              Flatten what's exitable right now
+              Flatten what&apos;s exitable right now
             </div>
           </div>
           <button
@@ -62,7 +62,7 @@ export function EmergencyExitCard({ positions }: Props) {
           {stuck.length > 0 && (
             <div className="text-xs text-[var(--color-text-dim)] mb-5">
               {stuck.length} position{stuck.length !== 1 ? "s are" : " is"} locked (window ended, awaiting
-              settlement) — can't be exited early.
+              settlement) — can&apos;t be exited early.
             </div>
           )}
           <div className="flex gap-2">
